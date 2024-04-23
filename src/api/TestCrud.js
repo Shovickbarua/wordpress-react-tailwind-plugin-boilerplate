@@ -3,7 +3,7 @@ import axios from 'axios';
 const TestCrud = {};
 
 TestCrud.index = async (params = null) => {
-    const url = '/wp-json/test-crud/v1/data';
+    const url = '/wp-json/test-plugin-crud/v1/datas';
     try {
         const response = await axios.get(url, { params: params });
         return response.data;
@@ -14,7 +14,7 @@ TestCrud.index = async (params = null) => {
 };
 
 TestCrud.show = async (id, params = null) => {
-    const url = '/wp-json/test-crud/v1/get-data/' + id;
+    const url = '/wp-json/test-plugin-crud/v1/get-data/' + id;
     try {
         const response = await axios.get(url, { params: params });
         return response.data;
@@ -25,7 +25,7 @@ TestCrud.show = async (id, params = null) => {
 };
 
 TestCrud.delete = async (id, params = null) => {
-    const url = '/wp-json/test-crud/v1/delete-data/' + id;
+    const url = '/wp-json/test-plugin-crud/v1/delete-data/' + id;
     try {
         const response = await axios.get(url, { params: params });
         return response.data;

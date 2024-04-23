@@ -68,7 +68,6 @@ class TestPluginRestApi{
             "SELECT * FROM $table_name WHERE ID = %d",
             $id
         );
-
         // Fetch the task details using custom query
         $data = $wpdb->get_row( $query );
 

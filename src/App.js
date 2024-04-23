@@ -6,6 +6,7 @@ import TestComponentList from "./pages/TestComponentList";
 
 const router = createHashRouter([
     { path: "/", element: <TestComponent /> },
+    { path: "/edit/:id", element: <TestComponent /> },
     { path: "/list", element: <TestComponentList /> },
     
 ]);

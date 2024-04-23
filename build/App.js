@@ -4392,7 +4392,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const TestCrud = {};
 TestCrud.index = async (params = null) => {
-  const url = '/wp-json/test-crud/v1/data';
+  const url = '/wp-json/test-plugin-crud/v1/datas';
   try {
     const response = await axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url, {
       params: params
@@ -4404,7 +4404,7 @@ TestCrud.index = async (params = null) => {
   }
 };
 TestCrud.show = async (id, params = null) => {
-  const url = '/wp-json/test-crud/v1/get-data/' + id;
+  const url = '/wp-json/test-plugin-crud/v1/get-data/' + id;
   try {
     const response = await axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url, {
       params: params
@@ -4416,7 +4416,7 @@ TestCrud.show = async (id, params = null) => {
   }
 };
 TestCrud.delete = async (id, params = null) => {
-  const url = '/wp-json/test-crud/v1/delete-data/' + id;
+  const url = '/wp-json/test-plugin-crud/v1/delete-data/' + id;
   try {
     const response = await axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url, {
       params: params
@@ -4475,9 +4475,7 @@ const TestComponent = () => {
   }, [id]);
   const getData = async id => {
     const res = await _api_TestCrud__WEBPACK_IMPORTED_MODULE_1__["default"].show(id);
-    if (res.success) {
-      setState(res.data.data);
-    }
+    setState(res);
   };
   const handleChange = e => {
     const {
@@ -4567,7 +4565,7 @@ const TestComponentList = () => {
   }, []);
   const getData = async () => {
     const res = await _api_TestCrud__WEBPACK_IMPORTED_MODULE_1__["default"].index();
-    setState(res.data.data);
+    setState(res);
   };
   const deleteData = async id => {
     const confirmMsg = confirm("Are you sure!");
@@ -4643,7 +4641,7 @@ const TestComponentList = () => {
   }, data.name), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("td", {
     className: "py-8 px-6 text-sm font-medium float-right whitespace-nowrap flex my-auto"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-    to: '/edit' + data.id,
+    to: '/edit/' + data.id,
     className: "text-blue-600 dark:text-blue-500 hover:underline text-2xl"
   }, "Edit"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     onClick: () => deleteData(data.id),
@@ -11936,6 +11934,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const router = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.createHashRouter)([{
   path: "/",
+  element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_pages_TestComponent__WEBPACK_IMPORTED_MODULE_2__["default"], null)
+}, {
+  path: "/edit/:id",
   element: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_pages_TestComponent__WEBPACK_IMPORTED_MODULE_2__["default"], null)
 }, {
   path: "/list",

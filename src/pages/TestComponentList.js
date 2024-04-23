@@ -11,7 +11,7 @@ const TestComponentList = () => {
 
     const getData = async () => {
         const res = await TestCrud.index();
-            setState(res.data.data);
+            setState(res);
     };
 
     const deleteData = async (id) => {
@@ -69,7 +69,7 @@ const TestComponentList = () => {
                                         </td>
                                         <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{data.name}</td>
                                         <td className="py-8 px-6 text-sm font-medium float-right whitespace-nowrap flex my-auto">
-                                            <Link to={'/edit'+ data.id}  className="text-blue-600 dark:text-blue-500 hover:underline text-2xl">Edit</Link>
+                                            <Link to={'/edit/'+ data.id}  className="text-blue-600 dark:text-blue-500 hover:underline text-2xl">Edit</Link>
                                             <button onClick={() => deleteData(data.id)} className="ml-2 text-blue-600 dark:text-blue-500 hover:underline text-2xl">Delete</button>
                                         </td>
                                     </tr>

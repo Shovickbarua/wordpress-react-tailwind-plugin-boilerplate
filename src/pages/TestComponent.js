@@ -18,9 +18,7 @@ const TestComponent = () => {
 
   const getData = async (id) => {
     const res = await TestCrud.show(id);
-    if (res.success) {
-      setState(res.data.data);
-    }
+      setState(res);
   };
 
   const handleChange = (e) => {

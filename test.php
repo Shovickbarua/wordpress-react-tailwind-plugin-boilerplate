@@ -16,7 +16,6 @@ class Test
 {
     public function __construct()
     {
-        add_action('init', array($this, 'onInit'));
         add_action('admin_menu', [$this, 'create_admin_menu']);
         add_action('admin_enqueue_scripts', [$this, 'load_scripts']);
         register_activation_hook(__FILE__, [$this, 'accounting_plugin_activate']);
