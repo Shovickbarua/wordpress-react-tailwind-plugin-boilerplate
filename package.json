@@ -1,4 +1,5 @@
 {
+  "name": "shovick-boilerplate-plugin",
   "main": "App.js",
   "devDependencies": {
     "@wordpress/scripts": "^27.6.0",
