@@ -2,7 +2,7 @@
 
 Hi there :rocket: 
 
-This boilerplate has built in support for react, react-router & tailwind CSS. I used wordpress official script [@wordpress/scripts](https://www.npmjs.com/package/@wordpress/scripts) to implement react. I included a complete crud operation using wordpress rest api & react to make it easier for beginners.
+This boilerplate has built in support for react, react-router & tailwind CSS. I have used wordpress official script [@wordpress/scripts](https://www.npmjs.com/package/@wordpress/scripts) to implement react. I have included a complete crud operation using wordpress rest api & react to make it easier for beginners.
 
 ## Installation
 + First clone the the github repository
