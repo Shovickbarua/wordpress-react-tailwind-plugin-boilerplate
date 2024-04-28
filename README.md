@@ -25,6 +25,6 @@ npm run dev
 
 ```
 npm i @wordpress/scripts@latest
-``
+```
 
 Happy Coding :wink:
