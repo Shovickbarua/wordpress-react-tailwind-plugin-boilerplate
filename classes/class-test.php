@@ -63,21 +63,21 @@ class TestPluginRestApi{
 
         $id = $request['id'];
 
-        // Query to fetch task details from custom table
+        // Query to fetch data details from custom table
         $query = $wpdb->prepare(
             "SELECT * FROM $table_name WHERE ID = %d",
             $id
         );
-        // Fetch the task details using custom query
+        // Fetch the data details using custom query
         $data = $wpdb->get_row( $query );
 
-        // Check if the task exists
+        // Check if the data exists
         if ( $data ) {
-            // Return the task details
+            // Return the data details
             return rest_ensure_response( $data );
         } else {
-            // Task not found, return error response
-            return new WP_Error( 'task_not_found', __( 'Task not found', 'text-domain' ), array( 'status' => 404 ) );
+            // data not found, return error response
+            return new WP_Error( 'data_not_found', __( 'Data not found', 'text-domain' ), array( 'status' => 404 ) );
         }
     }
     public function delete_single_data($request) {
@@ -92,7 +92,7 @@ class TestPluginRestApi{
             return new WP_Error( 'missing_id', __( 'Data ID is missing', 'text-domain' ), array( 'status' => 400 ) );
         }
 
-        // Delete the category from the database
+        // Delete the data from the database
         $result = $wpdb->delete(
             $table_name,
             array( 'ID' => $id ),
@@ -104,10 +104,10 @@ class TestPluginRestApi{
             // Deletion failed, return error response
             return new WP_Error( 'data_delete_failed', __( 'Failed to delete data', 'text-domain' ), array( 'status' => 500 ) );
         } elseif ($result === 0) {
-            // No rows were affected, category with provided ID doesn't exist
+            // No rows were affected, data with provided ID doesn't exist
             return new WP_Error( 'data_not_found', __( 'Data not found', 'text-domain' ), array( 'status' => 404 ) );
         } else {
-            // Category successfully deleted
+            // data successfully deleted
             return rest_ensure_response( array( 'message' => 'Data deleted successfully' ) );
         };
     }

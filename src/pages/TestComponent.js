@@ -43,7 +43,7 @@ const TestComponent = () => {
   return (
     <div className='m-auto h-100'>
       <div className='bg-white p-4'>
-        <Link to='list' className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mb-4">
+        <Link to='/list' className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mb-4">
           List
         </Link>
         <form class="w-full max-w-lg mx-auto" onSubmit={handleSubmit}>

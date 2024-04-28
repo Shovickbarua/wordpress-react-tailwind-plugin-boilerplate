@@ -48,17 +48,17 @@ class Test
 
     public function accounting_plugin_activate()
     {
-        include TEST_PATH . 'migrations/test-crud-migrations.php';
+        include TEST_PATH . 'migrations/test-crud-migrations.php'; // Contains all the databse migration
     }
 
     public function includes()
     {
-        require TEST_PATH . 'classes/class-test.php';
+        require TEST_PATH . 'classes/class-test.php'; // Contains all the rest api
     }
 
     public function menu_page_template()
     {
-        echo '<div id="test-app"></div>';
+        echo '<div id="test-app"></div>'; //initialize your react component
     }
 }
 
