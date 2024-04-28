@@ -8,7 +8,7 @@ This boilerplate has built in support for react, react-router & tailwind CSS. I 
 + First clone the the github repository
 
 ```
-git clone https://github.com/Shovickbarua/laravel_react_authentication_and_crud_example.git
+git clone https://github.com/Shovickbarua/wordpress-react-tailwind-plugin-boilerplate.git
 ```
 
 + Run npm installation command
