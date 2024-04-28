@@ -14,7 +14,7 @@ git clone https://github.com/Shovickbarua/laravel_react_authentication_and_crud_
 + Run npm installation command
 ```
 npm install
-``
+```
 
 + Now run the project using this command
 ```
