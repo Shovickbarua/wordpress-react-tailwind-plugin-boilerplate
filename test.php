@@ -18,7 +18,7 @@ class Test
     {
         add_action('admin_menu', [$this, 'create_admin_menu']);
         add_action('admin_enqueue_scripts', [$this, 'load_scripts']);
-        register_activation_hook(__FILE__, [$this, 'accounting_plugin_activate']);
+        register_activation_hook(__FILE__, [$this, 'test_plugin_activate']);
         $this->includes(); // Call includes method to include necessary files
     }
 
@@ -39,14 +39,14 @@ class Test
     public function load_scripts()
     {
         wp_enqueue_script('test-plugin-scripts', plugin_dir_url(__FILE__) . 'build/App.js', ['wp-element'], wp_rand(), true);
-        wp_enqueue_style('test-plugin-style', plugin_dir_url(__FILE__) . 'build/output.css');
+        // wp_enqueue_style('test-plugin-style', plugin_dir_url(__FILE__) . 'build/output.css');
         wp_localize_script('test-plugin-crud', 'appLocalizer', [
             'apiUrl' => home_url('/wp-json'),
             'nonce' => wp_create_nonce('wp_rest'),
         ]);
     }
 
-    public function accounting_plugin_activate()
+    public function test_plugin_activate()
     {
         include TEST_PATH . 'migrations/test-crud-migrations.php'; // Contains all the databse migration
     }
@@ -58,7 +58,7 @@ class Test
 
     public function menu_page_template()
     {
-        echo '<div id="test-app"></div>'; //initialize your react component
+        echo '<div class="test-wrapper" id="test-app"></div>'; //initialize your react component
     }
 }
 

@@ -13,7 +13,7 @@ if (!class_exists('TestCrudMigration')) {
         private function create_crud_table() {
             global $wpdb;
 
-            $table_name = $wpdb->prefix . 'crud';
+            $table_name = $wpdb->prefix . 'crudss';
 
             $charset_collate = $wpdb->get_charset_collate();
 

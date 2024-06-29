@@ -4500,7 +4500,7 @@ const TestComponent = () => {
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "bg-white p-4"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-    to: "list",
+    to: "/list",
     className: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mb-4"
   }, "List"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("form", {
     class: "w-full max-w-lg mx-auto",
