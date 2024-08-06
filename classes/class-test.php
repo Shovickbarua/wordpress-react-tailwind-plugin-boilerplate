@@ -1,6 +1,6 @@
 <?php
 // Add all your rest api here
-class TestPluginRestApi{
+class TestCrudRestApi{
     public function __construct()
     {
         add_action('rest_api_init', [$this, 'test_api_endpoint']);
@@ -11,36 +11,41 @@ class TestPluginRestApi{
         register_rest_route('test-plugin-crud/v1', '/add-data', array(
             'methods' => 'POST', // Change to POST method to handle data insertion
             'callback' => [$this, 'save_form_data'],
-            // 'permission_callback' => function () {
-            //     return current_user_can('edit_posts'); // Adjust permissions as needed
-            // },
+            'permission_callback' => [$this, 'verify_test_nonce'],
         ));
 
         register_rest_route('test-plugin-crud/v1', '/datas', array(
             'methods' => 'get', 
             'callback' => [$this, 'get_data'],
-            // 'permission_callback' => function () {
-            //     return current_user_can('edit_posts'); // Adjust permissions as needed
-            // },
+            'permission_callback' => function () {
+                return true;
+            },
         ));
         
         register_rest_route('test-plugin-crud/v1', '/get-data/(?P<id>\d+)', array(
             'methods' => 'get', 
             'callback' => [$this, 'get_single_data'],
-            // 'permission_callback' => function () {
-            //     return current_user_can('edit_posts'); // Adjust permissions as needed
-            // },
+            'permission_callback' => function () {
+                return true;
+            },
         ));
         
         register_rest_route('test-plugin-crud/v1', '/delete-data/(?P<id>\d+)', array(
             'methods' => 'get', 
             'callback' => [$this, 'delete_single_data'],
-            // 'permission_callback' => function () {
-            //     return current_user_can('edit_posts'); // Adjust permissions as needed
-            // },
+            'permission_callback' => [$this, 'verify_test_nonce'],
         ));
         
     }
+
+    function verify_test_nonce($request) {
+        $nonce = $request->get_header('X-WP-Nonce');
+        if (!wp_verify_nonce($nonce, 'wp_rest')) {
+            return new WP_Error('rest_forbidden', esc_html__('Invalid nonce.', 'test-crud'), array('status' => 403));
+        }
+        return true;
+    }
+
 
     public function get_data() {
         global $wpdb;
@@ -77,7 +82,7 @@ class TestPluginRestApi{
             return rest_ensure_response( $data );
         } else {
             // data not found, return error response
-            return new WP_Error( 'data_not_found', __( 'Data not found', 'text-domain' ), array( 'status' => 404 ) );
+            return new WP_Error( 'data_not_found', esc_html__( 'Data not found', 'test-crud' ), array( 'status' => 404 ) );
         }
     }
     public function delete_single_data($request) {
@@ -89,7 +94,7 @@ class TestPluginRestApi{
 
         // Check if ID is provided
         if (empty($id)) {
-            return new WP_Error( 'missing_id', __( 'Data ID is missing', 'text-domain' ), array( 'status' => 400 ) );
+            return new WP_Error( 'missing_id', esc_html__( 'Data ID is missing', 'test-crud' ), array( 'status' => 400 ) );
         }
 
         // Delete the data from the database
@@ -102,13 +107,13 @@ class TestPluginRestApi{
         // Check if deletion was successful
         if ($result === false) {
             // Deletion failed, return error response
-            return new WP_Error( 'data_delete_failed', __( 'Failed to delete data', 'text-domain' ), array( 'status' => 500 ) );
+            return new WP_Error( 'data_delete_failed', esc_html__( 'Failed to delete data', 'test-crud' ), array( 'status' => 500 ) );
         } elseif ($result === 0) {
             // No rows were affected, data with provided ID doesn't exist
-            return new WP_Error( 'data_not_found', __( 'Data not found', 'text-domain' ), array( 'status' => 404 ) );
+            return new WP_Error( 'data_not_found', esc_html__( 'Data not found', 'test-crud' ), array( 'status' => 404 ) );
         } else {
             // data successfully deleted
-            return rest_ensure_response( array( 'message' => 'Data deleted successfully' ) );
+            return rest_ensure_response( array( 'message' => esc_html__('Data deleted successfully', 'test-crud') ) );
         };
     }
 
@@ -125,7 +130,7 @@ class TestPluginRestApi{
         // Perform validation
         if (empty($name)) {
             $response = array(
-                'message' => 'Name is required.',
+                'message' => esc_html__('Name is required.', 'test-crud'),
             );
             return new WP_REST_Response($response, 400);
         }
@@ -143,12 +148,12 @@ class TestPluginRestApi{
             // Prepare and return the response
             if ($table) {
                 $response = array(
-                    'message' => 'Data updated successfully!',
+                    'message' => esc_html__('Data updated successfully!', 'test-crud'),
                     'data' => $table,
                 );
             } else {
                 $response = array(
-                    'message' => 'Update data failed',
+                    'message' => esc_html__('Update data failed', 'test-crud'),
                 );
             }
         } else {
@@ -157,12 +162,12 @@ class TestPluginRestApi{
             // Prepare and return the response
             if ($table) {
                 $response = array(
-                    'message' => 'Data created successfully!',
+                    'message' => esc_html__('Data updated successfully!', 'test-crud'),
                     'data' => $table,
                 );
             } else {
                 $response = array(
-                    'message' => 'Create Data failed',
+                    'message' => esc_html__('Create data failed', 'test-crud'),
                 );
             }
         }
@@ -173,4 +178,4 @@ class TestPluginRestApi{
 
 }
 
-$test = new TestPluginRestApi();
+$test = new TestCrudRestApi();

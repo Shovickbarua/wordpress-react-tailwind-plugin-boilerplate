@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const TestCrud = {};
 
+const nonce = appLocalizer.nonce;
+
 TestCrud.index = async (params = null) => {
     const url = '/wp-json/test-plugin-crud/v1/datas';
     try {
@@ -37,8 +39,11 @@ TestCrud.delete = async (id, params = null) => {
 
 TestCrud.save = async (data) => {
     let url = "/wp-json/test-plugin-crud/v1/add-data";
-    const res = await axios.post(url, data)
-        .then(response => {
+    const res = await axios.post(url, data, {
+        headers: {
+            'X-WP-Nonce': nonce
+            }
+        }).then(response => {
             return response.data;
         }).catch(error => { return []; });
     return res;
