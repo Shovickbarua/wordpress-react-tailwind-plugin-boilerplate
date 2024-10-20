@@ -39,7 +39,7 @@ class Test
     public function load_scripts()
     {
         wp_enqueue_script('test-plugin-scripts', plugin_dir_url(__FILE__) . 'build/App.js', ['wp-element'], wp_rand(), true);
-        // wp_enqueue_style('test-plugin-style', plugin_dir_url(__FILE__) . 'build/output.css');
+        wp_enqueue_style('test-plugin-style', plugin_dir_url(__FILE__) . 'build/output.css');
         wp_localize_script('test-plugin-scripts', 'appLocalizer', [
             'apiUrl' => home_url('/wp-json'),
             'nonce' => wp_create_nonce('wp_rest'),
@@ -58,7 +58,7 @@ class Test
 
     public function menu_page_template()
     {
-        echo '<div class="test-wrapper" id="test-app"></div>'; //initialize your react component
+        echo '<div id="test-app"></div>'; //initialize your react component
     }
 }
 
