@@ -18,7 +18,7 @@ npm install
 
 + Now run the project using this command
 ```
-npm run dev
+npm run start
 ```
 
 ## Upgrade to latest version
