@@ -58,7 +58,7 @@ class Test
 
     public function menu_page_template()
     {
-        echo '<div id="test-app"></div>'; //initialize your react component
+        echo '<div class="test-container"><div id="test-app"></div></div>'; //initialize your react component
     }
 }
 
